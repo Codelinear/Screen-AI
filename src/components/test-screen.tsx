@@ -11,7 +11,8 @@ import axios from "axios";
 
 const TestScreen = () => {
   const [selectedOption, setSelectedOption] = useState("");
-  const [questionNumber, setQuestionNumber] = useState(24);
+  const [questionNumber, setQuestionNumber] = useState(0);
+  const [submitLoading, setSubmitLoading] = useState(false);
 
   const time = new Date();
   time.setSeconds(time.getSeconds() + 90); // 3 minutes timer
@@ -64,9 +65,17 @@ const TestScreen = () => {
       }
 
       if (selected) {
-        await axios.post("/api/email/hr", { userDetails });
+        try {
+          setSubmitLoading(true);
+
+          await axios.post("/api/email/hr", { userDetails });
+
+          setSubmitLoading(false);
+        } catch (error) {
+          setSubmitLoading(false);
+        }
       } else {
-        await axios.post("/api/email/user", { userDetails });
+        // await axios.post("/api/email/user", { userDetails });
       }
 
       pause();
@@ -111,13 +120,21 @@ const TestScreen = () => {
           </Link>
         </div>
       </div>
+
+      {submitLoading && (
+        <div className="absolute h-screen w-screen backdrop-blur-3xl bg-white top-0 left-0 z-50 flex items-center justify-center">
+          <h1 className="text-6xl font-bold text-center mx-10 animate-pulse text-[#303030]">
+            Evaluating your result.
+          </h1>
+        </div>
+      )}
+
       <div className="w-[70.813rem] flex flex-col items-start justify-start gap-[3.425rem] max-w-full text-[3rem] text-darkslategray mq750:gap-[1.688rem]">
         <h1
           style={{ userSelect: "none" }}
           className="m-0 self-stretch h-[7.25rem] relative text-inherit tracking-[-0.02em] leading-[120%] font-normal font-inherit inline-block mq450:text-[1.813rem] mq450:leading-[2.188rem] mq1050:text-[2.375rem] mq1050:leading-[2.875rem] cursor-not-allowed pointer-events-none"
         >
-          {questions &&
-            questions[questionNumber]?.question}
+          {questions && questions[questionNumber]?.question}
         </h1>
         <div className="flex flex-col items-start justify-start gap-[1.25rem] max-w-full text-[1.5rem] text-black">
           {questions &&

@@ -63,7 +63,7 @@ const ChatHome = ({
           Give us up to 48 hours for an update regarding your onboarding.
         </p>
       </div>
-      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl w-3/4 max-[420px]:w-full max-[420px]:text-center md:w-1/2 flex flex-col justify-between font-bold text-[#303030]">
+      <h1 className="text-3xl sm:text-4xl md:text-5sxl lg:text-6sxl w-3/4 max-[420px]:w-full max-[420px]:text-center md:w-1/2 flex flex-col justify-between font-bold text-[#303030]">
         Meanwhile, you can learn about our company.
       </h1>
       <div className="w-full mb-10 flex justify-between overflow-x-scroll scrollbar-hide">
