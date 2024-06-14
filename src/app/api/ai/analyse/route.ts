@@ -4,6 +4,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { WebPDFLoader } from "@langchain/community/document_loaders/web/pdf";
 import { analyseSystemPrompt } from "@/lib/prompts";
 
+export const maxDuration = 60;
+
 export const POST = async (req: NextRequest) => {
   try {
     const formData = await req.formData();

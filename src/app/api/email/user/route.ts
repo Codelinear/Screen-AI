@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
+export const maxDuration = 60;
+
 export const POST = async (req: NextRequest) => {
   const { userDetails } = await req.json();
 

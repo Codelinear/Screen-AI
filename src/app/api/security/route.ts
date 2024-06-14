@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
+export const maxDuration = 60;
+
 export const POST = async (req: NextRequest) => {
   try {
     const { password } = await req.json();

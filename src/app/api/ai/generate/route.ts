@@ -5,6 +5,8 @@ import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { questionSystemPrompt } from "@/lib/prompts";
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 
+export const maxDuration = 60;
+
 export const POST = async (req: NextRequest) => {
   try {
     const openaiAPIKey = process.env.OPENAI_API_KEY;
