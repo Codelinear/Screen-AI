@@ -2,11 +2,11 @@
 
 import { useStore } from "@/store";
 import React, { useCallback, useEffect, useState } from "react";
-import Redirect from "./ui/redirect";
-import Link from "next/link";
 import { checkAnswer, isCandidateSelected } from "@/lib/functions";
+import Markdown from "react-markdown";
 import { useTimer } from "react-timer-hook";
 import { v4 as uuidv4 } from "uuid";
+import remarkGfm from 'remark-gfm'
 import axios from "axios";
 
 const TestScreen = () => {
@@ -106,8 +106,6 @@ const TestScreen = () => {
 
   return (
     <div className="w-full relative bg-whitesmoke overflow-hidden flex flex-col items-start justify-start pt-36 px-[7.5rem] pb-[3rem] box-border text-[2.294rem]">
-     
-
       {submitLoading && (
         <div className="absolute h-screen w-screen backdrop-blur-3xl bg-white top-0 left-0 z-50 flex items-center justify-center">
           <h1 className="text-6xl font-bold text-center mx-10 animate-pulse text-[#303030]">
@@ -121,7 +119,9 @@ const TestScreen = () => {
           style={{ userSelect: "none" }}
           className="m-0 self-stretch text-inherit cursor-not-allowed pointer-events-none"
         >
-          {questions && questions[questionNumber]?.question}
+          <Markdown remarkPlugins={[remarkGfm]}>
+            {questions && questions[questionNumber]?.question}
+          </Markdown>
         </h1>
         <div className="flex flex-col text-[1rem] items-start justify-start gap-[1.25rem] max-w-full h-md:text-[1.5rem] text-black">
           {questions &&
@@ -144,14 +144,10 @@ const TestScreen = () => {
                   style={{ userSelect: "none" }}
                   className="flex flex-col items-start justify-start pt-[0.125rem] cursor-pointer"
                 >
-                  <p>
-                    {option}
-                  </p>
+                  <p>{option}</p>
                 </label>
               </div>
             ))}
-
-         
         </div>
       </div>
       <div className="w-[67.25rem] flex flex-row items-end justify-between max-w-full gap-[1.25rem] text-[1.5rem] text-white">
@@ -163,7 +159,7 @@ const TestScreen = () => {
               !selectedOption ? "opacity-50" : "opacity-100"
             } rounded-full bg-blueviolet-200 text-base flex flex-row items-start cursor-pointer justify-start py-6 px-8`}
           >
-              Next
+            Next
           </button>
           <div className="flex flex-col items-start justify-start text-black">
             <div className="font-medium">

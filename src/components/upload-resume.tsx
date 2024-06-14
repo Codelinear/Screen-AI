@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import Link from "next/link";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Redirect from "./ui/redirect";
 import UploadIcon from "./ui/upload";
 import ArrowLeft from "./ui/arrow-left";
@@ -13,6 +13,7 @@ import axios from "axios";
 const UploadResume: NextPage = () => {
   const [file, setFile] = useState<File | null>(null);
   const [testLoading, setTestLoading] = useState<boolean>(false);
+  const [progress, setProgress] = useState<number>(5);
   const [fileStatus, setfileStatus] = useState<"empty" | "valid" | "invalid">(
     "empty"
   );
@@ -21,6 +22,23 @@ const UploadResume: NextPage = () => {
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
+  useEffect(() => {
+    let timer: NodeJS.Timeout | undefined;
+    if (testLoading) {
+      setProgress(5);
+      timer = setInterval(() => {
+        setProgress((prev) => (prev < 100 ? prev + 0.3 : 100));
+      }, 10); // Adjust the interval time to control the speed of the slider
+    } else {
+      clearInterval(timer);
+    }
+    return () => {
+      if (timer) {
+        clearInterval(timer);
+      }
+    };
+  }, [testLoading]);
+  
   const onResumeSubmit = async () => {
     try {
       setTestLoading(true);
@@ -39,8 +57,6 @@ const UploadResume: NextPage = () => {
 
       const isEligible = res.data.output.passed;
 
-      setTestLoading(false);
-
       if (isEligible) {
         changeScreen("resumeValid");
       } else {
@@ -49,14 +65,17 @@ const UploadResume: NextPage = () => {
     } catch (error) {
       console.error(error);
       // apply toaster here for error message
-      setTestLoading(false);
+
       setFile(null);
       setfileStatus("empty");
+    } finally {
+      setTestLoading(false);
+      setProgress(100);
     }
   };
 
   return testLoading ? (
-    <TestLoading />
+    <TestLoading progress={progress} />
   ) : (
     <div className="w-full bg-whitesmoke flex flex-col items-start justify-start pt-32 pl-6 md:pb-0 pb-10 sm:pl-14 xl:pl-28 h-md:pb-[4rem] h-lg:pb-[12.75rem] lg:pl-[3.75rem] lg:pr-[3.75rem]">
       <input
