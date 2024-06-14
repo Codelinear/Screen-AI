@@ -14,9 +14,6 @@ const config = {
     container: {
       center: true,
       padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
     },
     extend: {
       colors: {
@@ -94,20 +91,6 @@ const config = {
         "h-sm": { raw: "(min-height: 600px)" },
         "h-md": { raw: "(min-height: 800px)" },
         "h-lg": { raw: "(min-height: 1000px)" },
-
-        // for width
-        lg: {
-          max: "1200px",
-        },
-        mq1050: {
-          raw: "screen and (max-width: 1050px)",
-        },
-        mq750: {
-          raw: "screen and (max-width: 750px)",
-        },
-        mq450: {
-          raw: "screen and (max-width: 450px)",
-        },
       },
       keyframes: {
         "accordion-down": {

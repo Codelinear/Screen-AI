@@ -105,21 +105,8 @@ const TestScreen = () => {
   ]);
 
   return (
-    <div className="w-full relative bg-whitesmoke overflow-hidden flex flex-col items-start justify-start pt-[2.25rem] h-md:pt-[4.25rem] px-[7.5rem] pb-[3rem] h-lg:pb-[15.8rem] box-border gap-[3rem] h-md:gap-[5.012rem] h-lg:gap-[8.012rem] leading-[normal] tracking-[normal] text-left text-[2.294rem] text-gray font-graphik lg:gap-[4rem] lg:pl-[3.75rem] lg:pr-[3.75rem] lg:box-border mq450:gap-[1rem] mq750:gap-[2rem] mq750:pl-[1.875rem] mq750:pr-[1.875rem] mq750:box-border">
-      <div className="w-[9.688rem] flex flex-col items-start justify-start gap-[0.375rem]">
-        <a className="[text-decoration:none] h-[2.5rem] relative tracking-[-0.04em] text-[inherit] inline-block mq450:text-[1.375rem] mq1050:text-[1.813rem]">
-          Screen.AI
-        </a>
-        <div className="self-stretch flex flex-row items-start justify-end text-[0.875rem]">
-          <Link
-            href="https://codelinear.com"
-            className="flex flex-row items-start justify-start gap-[0.125rem] cursor-pointer"
-          >
-            <div className="relative">by Codelinear</div>
-            <Redirect />
-          </Link>
-        </div>
-      </div>
+    <div className="w-full relative bg-whitesmoke overflow-hidden flex flex-col items-start justify-start pt-36 px-[7.5rem] pb-[3rem] box-border text-[2.294rem]">
+     
 
       {submitLoading && (
         <div className="absolute h-screen w-screen backdrop-blur-3xl bg-white top-0 left-0 z-50 flex items-center justify-center">
@@ -129,10 +116,10 @@ const TestScreen = () => {
         </div>
       )}
 
-      <div className="w-[70.813rem] flex flex-col items-start justify-start gap-[2rem] h-md:gap-[3.425rem] max-w-full text-[2rem] h-md:text-[3rem] text-darkslategray mq750:gap-[1.688rem]">
+      <div className="w-[70.813rem] flex flex-col items-start justify-start gap-[2rem] mb-12 max-w-full text-[2rem] h-md:text-[3rem] text-darkslategray">
         <h1
           style={{ userSelect: "none" }}
-          className="m-0 self-stretch h-[3rem] h-md:h-[7.25rem] relative text-inherit tracking-[-0.02em] leading-[120%] font-normal font-inherit inline-block mq450:text-[1.813rem] mq450:leading-[2.188rem] mq1050:text-[2.375rem] mq1050:leading-[2.875rem] cursor-not-allowed pointer-events-none"
+          className="m-0 self-stretch text-inherit cursor-not-allowed pointer-events-none"
         >
           {questions && questions[questionNumber]?.question}
         </h1>
@@ -145,7 +132,7 @@ const TestScreen = () => {
               >
                 <input
                   id={option}
-                  className="cursor-pointer top-[6px] m-0 h-md:h-[1.75rem] h-md:w-[1.75rem] h-[1rem] w-[1rem] relative overflow-hidden shrink-0 min-h-[1.75rem]"
+                  className="cursor-pointer m-0 h-md:h-[1.75rem] h-md:w-[1.75rem] h-[1rem] w-[1rem] min-h-[1.75rem]"
                   type="radio"
                   name="options"
                   value={option}
@@ -155,110 +142,43 @@ const TestScreen = () => {
                 <label
                   htmlFor={option}
                   style={{ userSelect: "none" }}
-                  className="flex flex-col items-start justify-start pt-[0.125rem] px-[0rem] pb-[0rem] box-border max-w-[calc(100%_-_40px)] cursor-pointer"
+                  className="flex flex-col items-start justify-start pt-[0.125rem] cursor-pointer"
                 >
-                  <p className="m-0 relative tracking-[-0.02em] mq450:text-[1.188rem]">
+                  <p>
                     {option}
                   </p>
                 </label>
               </div>
             ))}
 
-          {/* <div className="flex flex-row items-start justify-start gap-[0.75rem] max-w-full">
-            <input
-              id="option-2"
-              className="cursor-pointer m-0 h-[1.75rem] w-[1.75rem] relative overflow-hidden shrink-0 min-h-[1.75rem]"
-              type="radio"
-              name="options"
-              value="B. Purus dictum lobortis venenatis faucibus vulputate."
-              checked={
-                selectedOption ===
-                "B. Purus dictum lobortis venenatis faucibus vulputate."
-              }
-              onChange={(e) => setSelectedOption(e.target.value)}
-            />
-            <label
-              htmlFor="option-2"
-              className="flex flex-col items-start justify-start pt-[0.125rem] px-[0rem] pb-[0rem] box-border max-w-[calc(100%_-_40px)]"
-            >
-              <p className="m-0 relative tracking-[-0.02em] mq450:text-[1.188rem]">
-                B. Purus dictum lobortis venenatis faucibus vulputate.
-              </p>
-            </label>
-          </div> */}
-          {/* <div className="flex flex-row items-start justify-start gap-[0.75rem] max-w-full">
-            <input
-              id="option-3"
-              className="cursor-pointer m-0 h-[1.75rem] w-[1.75rem] relative overflow-hidden shrink-0 min-h-[1.75rem]"
-              type="radio"
-              name="options"
-              value="C. Ultrices felis nunc congue gravida eros in. Odio."
-              checked={
-                selectedOption ===
-                "C. Ultrices felis nunc congue gravida eros in. Odio."
-              }
-              onChange={(e) => setSelectedOption(e.target.value)}
-            />
-            <label
-              htmlFor="option-3"
-              className="flex flex-col items-start justify-start pt-[0.125rem] px-[0rem] pb-[0rem] box-border max-w-[calc(100%_-_40px)]"
-            >
-              <p className="m-0 relative tracking-[-0.02em] mq450:text-[1.188rem]">
-                C. Ultrices felis nunc congue gravida eros in. Odio.
-              </p>
-            </label>
-          </div> */}
-          {/* <div className="flex flex-row items-start justify-start gap-[0.75rem] max-w-full">
-            <input
-              id="option-4"
-              className="cursor-pointer m-0 h-[1.75rem] w-[1.75rem] relative overflow-hidden shrink-0 min-h-[1.75rem]"
-              type="radio"
-              name="options"
-              value="D. Lobortis consectetur proin turpis aenean nunc in."
-              checked={
-                selectedOption ===
-                "D. Lobortis consectetur proin turpis aenean nunc in."
-              }
-              onChange={(e) => setSelectedOption(e.target.value)}
-            />
-            <label
-              htmlFor="option-4"
-              className="flex flex-col items-start justify-start pt-[0.125rem] px-[0rem] pb-[0rem] box-border max-w-[calc(100%_-_40px)]"
-            >
-              <p className="m-0 relative tracking-[-0.02em] mq450:text-[1.188rem]">
-                D. Lobortis consectetur proin turpis aenean nunc in.
-              </p>
-            </label>
-          </div> */}
+         
         </div>
       </div>
-      <div className="w-[67.25rem] flex flex-row items-end justify-between max-w-full gap-[1.25rem] text-[1.5rem] text-white mq1050:flex-wrap">
-        <div className="flex flex-row items-start justify-start gap-[1.775rem] max-w-full mq450:flex-wrap">
+      <div className="w-[67.25rem] flex flex-row items-end justify-between max-w-full gap-[1.25rem] text-[1.5rem] text-white">
+        <div className="flex items-center justify-start gap-[1.775rem] max-w-full">
           <button
             onClick={submitQuestion}
             disabled={!selectedOption}
-            className={`[backdrop-filter:blur(9.7px)] ${
+            className={`${
               !selectedOption ? "opacity-50" : "opacity-100"
-            } rounded-[51px] bg-blueviolet-200 overflow-hidden flex flex-row items-start cursor-pointer justify-start py-[2.25rem] px-[3rem]`}
+            } rounded-full bg-blueviolet-200 text-base flex flex-row items-start cursor-pointer justify-start py-6 px-8`}
           >
-            <div className="relative tracking-[-0.02em] mq450:text-[1.188rem]">
               Next
-            </div>
           </button>
-          <div className="flex flex-col items-start justify-start pt-[2.25rem] px-[0rem] pb-[0rem] text-black">
-            <div className="relative tracking-[-0.02em] font-medium mq450:text-[1.188rem]">
+          <div className="flex flex-col items-start justify-start text-black">
+            <div className="font-medium">
               {minutes}:{seconds < 10 ? "0" + seconds : seconds} remaining
             </div>
           </div>
         </div>
-        <div className="w-[21.125rem] flex flex-col items-end justify-start gap-[0.925rem] max-w-full text-right text-[1rem] text-black">
+        <div className="w-[21.125rem] flex flex-col items-end justify-start gap-[0.925rem] max-w-full text-right text-base text-black">
           <div className="relative">
             {questionNumber + 1} / 25 Questions finished.
           </div>
-          <div className="self-stretch rounded-6xl bg-white overflow-hidden flex flex-row items-start justify-start">
+          <div className="self-stretch rounded-6xl bg-white overflow-hidden flex flex-row items-start justify-start transition duration-300">
             <div
               style={{ width: `${(questionNumber * 100) / 25}%` }}
-              className="h-[1.625rem] relative rounded-6xl [background:linear-gradient(90deg,_#ebdfff,_#afbbf5)] overflow-hidden shrink-0"
+              className="h-[1.625rem] transition duration-300 relative rounded-6xl [background:linear-gradient(90deg,_#ebdfff,_#afbbf5)] overflow-hidden shrink-0"
             />
           </div>
         </div>
