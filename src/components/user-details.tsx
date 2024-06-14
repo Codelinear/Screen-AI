@@ -5,6 +5,8 @@ import { userDetailsSchema } from "@/lib/validator";
 import { z } from "zod";
 import { useEffect, useState } from "react";
 import { useStore } from "@/store";
+import Link from "next/link";
+import Redirect from "./ui/redirect";
 
 const UserDetails: NextPage = () => {
   const [userDetails, setUserDetails] = useState<
@@ -18,14 +20,6 @@ const UserDetails: NextPage = () => {
 
   const { changeScreen, setUserDetails: setDetails } = useStore();
 
-  useEffect(() => {
-    const status = window.localStorage.getItem("status");
-
-    if (status === "attempted") {
-      changeScreen("chatScreen");
-    }
-  }, [changeScreen]);
-
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserDetails((prev) => ({
       ...prev,
@@ -38,20 +32,25 @@ const UserDetails: NextPage = () => {
 
     setDetails(userDetails);
 
-    // Implement the db query from MongoDB
+    const status = window.localStorage.getItem("status");
+
+    if (status === "attempted") {
+      changeScreen("chatScreen");
+      return;
+    }
 
     changeScreen("uploadResume");
   };
 
   return (
-    <div className="w-full relative bg-whitesmoke h-[100vh] overflow-hidden text-left text-[1.5rem] text-darkslategray">
-      <h1 className="absolute top-[11.25rem] left-[7.5rem] text-[5.125rem] tracking-[-0.04em]">
+    <div className="w-full relative bg-whitesmoke h-[55rem] min-[840px]:h-[100vh] h-lg:h-[67.5rem] overflow-hidden text-left text-[1.5rem] text-darkslategray font-graphik">
+      <div className="absolute  top-[8.25rem] h-md:top-[10.25rem] h-lg:top-[15.25rem] left-[3.5rem] xl:left-[7.5rem] text-[3.125rem] h-md:text-[5.125rem] tracking-[-0.04em]">
         Tell us about yourself.
-      </h1>
+      </div>
 
       <form onSubmit={onSubmit}>
-        <div className="absolute h-lg:top-[22.25rem] top-[27.375rem] left-[7.5rem] w-[69.563rem] flex flex-row flex-wrap items-start justify-start gap-[4.5rem_1.25rem] text-gray-200">
-          <div className="w-[34.188rem] relative [backdrop-filter:blur(9.7px)] rounded-32xl bg-white h-lg:h-[5.063rem] h-[6.063rem]">
+        <div className="absolute top-[16.375rem] h-md:top-[21.375rem] h-lg:top-[27.375rem] left-[3.5rem] xl:left-[7.5rem] w-[22rem] min-[840px]:w-[46rem] xl:w-[69.563rem] flex flex-row flex-wrap items-start justify-start gap-[3rem_1.25rem] h-md:gap-[4.5rem_1.25rem] text-gray-200">
+          <div className="w-[22rem] min-[1280px]:w-[34.125rem] relative [backdrop-filter:blur(9.7px)] rounded-32xl bg-white h-[4.063rem] h-md:h-[6.063rem]">
             <label
               htmlFor="name"
               className="absolute top-[-2.125rem] left-[2.938rem] rounded-4xl bg-whitesmoke overflow-hidden flex flex-row items-center justify-center p-[0.25rem] text-[1rem] text-darkslategray"
@@ -71,10 +70,10 @@ const UserDetails: NextPage = () => {
             />
           </div>
 
-          <div className="w-[34.125rem] relative [backdrop-filter:blur(9.7px)] rounded-32xl bg-white h-lg:h-[5.063rem] h-[6.063rem] text-darkslategray">
+          <div className="w-[22rem] min-[1280px]:w-[34.125rem] relative [backdrop-filter:blur(9.7px)] rounded-32xl bg-white h-[4.063rem] overflow-hidden h-md:h-[6.063rem] text-darkslategray">
             <label
               htmlFor="phone"
-              className="absolute top-[-2.125rem] left-[2.938rem] rounded-4xl bg-whitesmoke overflow-hidden flex flex-row items-center justify-center p-[0.25rem] text-[1rem]"
+              className="absolute top-[-2.125rem] left-[2.938rem] rounded-4xl bg-whitesmoke flex flex-row items-center justify-center p-[0.25rem] text-[1rem]"
             >
               <div className="relative">Enter your phone number</div>
             </label>
@@ -94,11 +93,8 @@ const UserDetails: NextPage = () => {
               placeholder="98745 09384"
               required
             />
-            {/* <div className="absolute top-[calc(50%_-_13px)] left-[7.713rem] tracking-[-0.02em] text-gray-200">
-              98745 09384
-            </div> */}
           </div>
-          <div className="w-[34.188rem] relative [backdrop-filter:blur(9.7px)] rounded-32xl h-lg:h-[5.063rem] bg-white h-[6.063rem]">
+          <div className="w-[22rem] md:w-[30rem]  min-[1280px]:w-[34.125rem] relative [backdrop-filter:blur(9.7px)] rounded-32xl bg-white h-[4.063rem] h-md:h-[6.063rem]">
             <input
               id="email"
               name="email"
@@ -118,7 +114,7 @@ const UserDetails: NextPage = () => {
               <div className="relative h-lg:text-white">Enter your email</div>
             </label>
           </div>
-          <div className="w-[34.125rem] relative [backdrop-filter:blur(9.7px)] rounded-32xl h-lg:h-[5.063rem] bg-white h-[6.063rem]">
+          <div className="w-[22rem] min-[1280px]:w-[34.125rem] relative [backdrop-filter:blur(9.7px)] rounded-32xl bg-white h-[4.063rem] h-md:h-[6.063rem]">
             <input
               id="linkedInProfile"
               name="linkedInProfile"
@@ -140,11 +136,22 @@ const UserDetails: NextPage = () => {
         </div>
         <button
           type="submit"
-          className="absolute h-lg:top-[40.25rem] top-[48.625rem] left-[7.5rem] [backdrop-filter:blur(9.7px)] rounded-32xl h-lg:py-[1.25rem] h-lg:text-[1.3rem] h-lg:px-[2rem] bg-blueviolet-200 overflow-hidden flex flex-row items-center justify-center py-[2.25rem] px-[3rem] text-white"
+          className="absolute top-[45.625rem] min-[840px]:top-[29.625rem] h-md:top-[41.625rem] h-lg:top-[48.625rem] left-[3.5rem] xl:left-[7.5rem] [backdrop-filter:blur(9.7px)] rounded-32xl bg-blueviolet-200 overflow-hidden flex flex-row items-center justify-center h-md:py-[2.25rem] py-[1.25rem] h-md:px-[3rem] px-[2rem] text-white"
         >
           <p className="relative tracking-[-0.02em]">Next</p>
         </button>
       </form>
+
+      <div className="absolute top-[2rem] h-md:top-[4.25rem] left-[3.5rem] xl:left-[7.5rem] flex flex-col items-end justify-start gap-[0.375rem] text-[2rem] h-md:text-[2.294rem] text-gray-100">
+        <div className="relative tracking-[-0.04em]">Screen.AI</div>
+        <Link
+          className="flex flex-row items-start justify-start gap-[0.125rem] cursor-pointer text-[0.875rem]"
+          href="https://codelinear.com"
+        >
+          <div className="relative">by Codelinear</div>
+          <Redirect />
+        </Link>
+      </div>
     </div>
   );
 };

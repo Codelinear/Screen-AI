@@ -105,7 +105,7 @@ const TestScreen = () => {
   ]);
 
   return (
-    <div className="w-full relative bg-whitesmoke overflow-hidden flex flex-col items-start justify-start pt-[4.25rem] px-[7.5rem] pb-[15.8rem] box-border gap-[8.012rem] leading-[normal] tracking-[normal] text-left text-[2.294rem] text-gray font-graphik lg:gap-[4rem] lg:pl-[3.75rem] lg:pr-[3.75rem] lg:box-border mq450:gap-[1rem] mq750:gap-[2rem] mq750:pl-[1.875rem] mq750:pr-[1.875rem] mq750:box-border">
+    <div className="w-full relative bg-whitesmoke overflow-hidden flex flex-col items-start justify-start pt-[2.25rem] h-md:pt-[4.25rem] px-[7.5rem] pb-[3rem] h-lg:pb-[15.8rem] box-border gap-[3rem] h-md:gap-[5.012rem] h-lg:gap-[8.012rem] leading-[normal] tracking-[normal] text-left text-[2.294rem] text-gray font-graphik lg:gap-[4rem] lg:pl-[3.75rem] lg:pr-[3.75rem] lg:box-border mq450:gap-[1rem] mq750:gap-[2rem] mq750:pl-[1.875rem] mq750:pr-[1.875rem] mq750:box-border">
       <div className="w-[9.688rem] flex flex-col items-start justify-start gap-[0.375rem]">
         <a className="[text-decoration:none] h-[2.5rem] relative tracking-[-0.04em] text-[inherit] inline-block mq450:text-[1.375rem] mq1050:text-[1.813rem]">
           Screen.AI
@@ -129,14 +129,14 @@ const TestScreen = () => {
         </div>
       )}
 
-      <div className="w-[70.813rem] flex flex-col items-start justify-start gap-[3.425rem] max-w-full text-[3rem] text-darkslategray mq750:gap-[1.688rem]">
+      <div className="w-[70.813rem] flex flex-col items-start justify-start gap-[2rem] h-md:gap-[3.425rem] max-w-full text-[2rem] h-md:text-[3rem] text-darkslategray mq750:gap-[1.688rem]">
         <h1
           style={{ userSelect: "none" }}
-          className="m-0 self-stretch h-[7.25rem] relative text-inherit tracking-[-0.02em] leading-[120%] font-normal font-inherit inline-block mq450:text-[1.813rem] mq450:leading-[2.188rem] mq1050:text-[2.375rem] mq1050:leading-[2.875rem] cursor-not-allowed pointer-events-none"
+          className="m-0 self-stretch h-[3rem] h-md:h-[7.25rem] relative text-inherit tracking-[-0.02em] leading-[120%] font-normal font-inherit inline-block mq450:text-[1.813rem] mq450:leading-[2.188rem] mq1050:text-[2.375rem] mq1050:leading-[2.875rem] cursor-not-allowed pointer-events-none"
         >
           {questions && questions[questionNumber]?.question}
         </h1>
-        <div className="flex flex-col items-start justify-start gap-[1.25rem] max-w-full text-[1.5rem] text-black">
+        <div className="flex flex-col text-[1rem] items-start justify-start gap-[1.25rem] max-w-full h-md:text-[1.5rem] text-black">
           {questions &&
             questions[questionNumber]?.options.map((option) => (
               <div
@@ -145,7 +145,7 @@ const TestScreen = () => {
               >
                 <input
                   id={option}
-                  className="cursor-pointer top-[6px] m-0 h-[1.75rem] w-[1.75rem] relative overflow-hidden shrink-0 min-h-[1.75rem]"
+                  className="cursor-pointer top-[6px] m-0 h-md:h-[1.75rem] h-md:w-[1.75rem] h-[1rem] w-[1rem] relative overflow-hidden shrink-0 min-h-[1.75rem]"
                   type="radio"
                   name="options"
                   value={option}

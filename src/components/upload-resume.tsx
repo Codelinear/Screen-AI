@@ -55,10 +55,10 @@ const UploadResume: NextPage = () => {
     }
   };
 
-  return testLoading ? (
+  return true ? (
     <TestLoading />
   ) : (
-    <div className="w-full relative bg-whitesmoke overflow-hidden flex flex-col items-start justify-start h-sm:pt-[2rem] h-md:pt-[4.25rem] px-[7.5rem] pb-[4rem] h-lg:pb-[12.75rem] box-border h-md:gap-[2.125rem] h-lg:gap-[7.125rem] leading-[normal] tracking-[normal] text-left text-[2.294rem] text-gray font-graphik lg:pl-[3.75rem] lg:pr-[3.75rem] lg:box-border mq450:gap-[1.75rem] mq750:gap-[3.563rem] mq750:pl-[1.875rem] mq750:pr-[1.875rem] mq750:box-border">
+    <div className="w-full relative bg-whitesmoke overflow-hidden flex flex-col items-start justify-start h-sm:pt-[2rem] h-md:pt-[4.25rem] px-[7.5rem] h-md:pb-[4rem] h-lg:pb-[12.75rem] box-border gap-[1rem] h-md:gap-[2.125rem] h-lg:gap-[7.125rem] leading-[normal] tracking-[normal] text-left text-[2.294rem] text-gray font-graphik lg:pl-[3.75rem] lg:pr-[3.75rem] lg:box-border mq450:gap-[1.75rem] mq750:gap-[3.563rem] mq750:pl-[1.875rem] mq750:pr-[1.875rem] mq750:box-border">
       <input
         ref={fileInputRef}
         type="file"
@@ -85,8 +85,8 @@ const UploadResume: NextPage = () => {
         }}
       />
 
-      <div className="w-[9.688rem] flex flex-col items-start justify-start gap-[0.375rem]">
-        <a className="[text-decoration:none] h-[2.5rem] relative tracking-[-0.04em] text-[inherit] inline-block mq450:text-[1.375rem] mq1050:text-[1.813rem]">
+      <div className="w-[9.688rem] flex flex-col items-end justify-start gap-[0.375rem]">
+        <a className="[text-decoration:none] h-[2.5rem] text-[2rem] h-md:text-[2.294rem] relative tracking-[-0.04em] text-[inherit] inline-block mq450:text-[1.375rem] mq1050:text-[1.813rem]">
           Screen.AI
         </a>
         <div className="self-stretch flex flex-row items-start justify-end text-[0.875rem]">
@@ -112,7 +112,7 @@ const UploadResume: NextPage = () => {
                     fileInputRef.current?.click();
                   }
                 }}
-                className={`w-[34.188rem] cursor-pointer [backdrop-filter:blur(9.7px)] rounded-3xl bg-white flex flex-row items-start justify-center pt-[5.531rem] px-[1.25rem] pb-[5.593rem] box-border shrink-0 [debug_commit:69da668] max-w-full ${
+                className={`w-[20rem] sm:w-[26.188rem] h-md:w-[34.188rem] cursor-pointer [backdrop-filter:blur(9.7px)] rounded-3xl bg-white flex flex-row items-start justify-center py-[3.531rem] h-md:pt-[5.531rem] px-[1.25rem] h-md:pb-[5.593rem] box-border shrink-0 [debug_commit:69da668] max-w-full ${
                   fileStatus === "invalid" && "border border-[#C71414]"
                 }`}
               >
@@ -134,14 +134,12 @@ const UploadResume: NextPage = () => {
                 </div>
               </div>
 
-              {fileStatus === "valid" ? (
+              {fileStatus === "valid" && (
                 <div
-                  className={`w-full h-60 [backdrop-filter:blur(9.7px)] rounded-3xl bg-lavender leading-[normal] tracking-[normal]`}
+                  className={`w-full h-[11rem] h-md:h-60 [backdrop-filter:blur(9.7px)] flex items-center justify-center rounded-3xl bg-lavender leading-[normal] tracking-[normal]`}
                 >
                   <Reload />
                 </div>
-              ) : (
-                <div className="h-[15rem] w-[0.063rem] relative [backdrop-filter:blur(9.7px)] rounded-3xl bg-white shrink-0 [debug_commit:69da668]" />
               )}
             </div>
             <div
@@ -159,7 +157,7 @@ const UploadResume: NextPage = () => {
                 setFile(null);
                 changeScreen("home");
               }}
-              className="h-[6.125rem] w-[6.25rem] [backdrop-filter:blur(9.7px)] rounded-32xl bg-lavender overflow-hidden shrink-0 flex flex-row items-center justify-center py-[2.25rem] px-[1.875rem] box-border"
+              className="h-[4.6rem] h-md:h-[6.125rem] w-[4.6rem] cursor-pointer h-md:w-[6.25rem] [backdrop-filter:blur(9.7px)] rounded-32xl bg-lavender overflow-hidden shrink-0 flex flex-row items-center justify-center py-[2.25rem] px-[1.875rem] box-border"
             >
               <ArrowLeft />
             </div>
@@ -168,7 +166,7 @@ const UploadResume: NextPage = () => {
               onClick={onResumeSubmit}
               className={`[backdrop-filter:blur(9.7px)] rounded-32xl ${
                 fileStatus === "valid" ? "opacity-100" : "opacity-50"
-              } bg-blueviolet-200 overflow-hidden flex flex-row items-start justify-start py-[2.25rem] px-[3rem]`}
+              } bg-blueviolet-200 overflow-hidden flex flex-row items-start justify-start py-[1.25rem] h-md:py-[2.25rem] px-[2rem] h-md:px-[3rem]`}
             >
               <p className="relative tracking-[-0.02em] mq450:text-[1.188rem]">
                 Finish
