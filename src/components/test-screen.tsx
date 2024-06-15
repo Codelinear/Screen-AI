@@ -105,19 +105,19 @@ const TestScreen = () => {
   ]);
 
   return (
-    <div className="w-full relative bg-whitesmoke overflow-hidden flex flex-col items-start justify-start pt-36 px-[7.5rem] pb-[3rem] box-border text-[2.294rem]">
+    <div className="w-full relative bg-whitesmoke flex flex-col items-start justify-start pt-32 pl-6 pb-9 sm:pl-14 xl:pl-28 text-[2.294rem]">
       {submitLoading && (
         <div className="absolute h-screen w-screen backdrop-blur-3xl bg-white top-0 left-0 z-50 flex items-center justify-center">
-          <h1 className="text-6xl font-bold text-center mx-10 animate-pulse text-[#303030]">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mx-10 animate-pulse text-[#303030]">
             Evaluating your result.
           </h1>
         </div>
       )}
 
-      <div className="w-[70.813rem] flex flex-col items-start justify-start gap-[2rem] mb-12 max-w-full text-[2rem] h-md:text-[3rem] text-darkslategray">
+      <div className="w-[70.813rem] flex flex-col items-start justify-start gap-[2rem] mb-12 max-w-full text-darkslategray">
         <h1
           style={{ userSelect: "none" }}
-          className="m-0 self-stretch text-inherit cursor-not-allowed pointer-events-none"
+          className="mr-4 text-2xl sm:text-[2rem] cursor-not-allowed pointer-events-none"
         >
           <Markdown remarkPlugins={[remarkGfm]}>
             {questions && questions[questionNumber]?.question}
@@ -150,8 +150,8 @@ const TestScreen = () => {
             ))}
         </div>
       </div>
-      <div className="w-[67.25rem] flex flex-row items-end justify-between max-w-full gap-[1.25rem] text-[1.5rem] text-white">
-        <div className="flex items-center justify-start gap-[1.775rem] max-w-full">
+      <div className="w-[83vw] flex flex-wrap items-end mr-12 justify-between max-w-full gap-[1.25rem] text-[1.5rem] text-white">
+        <div className="flex items-center justify-start gap-[3rem] max-w-full">
           <button
             onClick={submitQuestion}
             disabled={!selectedOption}
@@ -169,7 +169,7 @@ const TestScreen = () => {
         </div>
         <div className="w-[21.125rem] flex flex-col items-end justify-start gap-[0.925rem] max-w-full text-right text-base text-black">
           <div className="relative">
-            {questionNumber + 1} / 25 Questions finished.
+            {questionNumber + 1} / {questions?.length} Questions finished.
           </div>
           <div className="self-stretch rounded-6xl bg-white overflow-hidden flex flex-row items-start justify-start transition duration-300">
             <div

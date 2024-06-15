@@ -43,16 +43,18 @@ const UserDetails: NextPage = () => {
   };
 
   return (
-    <main className="w-full bg-whitesmoke pt-32 pl-6 md:pb-0 pb-10 sm:pl-14 xl:pl-28">
-      <h1 className="text-[2rem] min-[500px]:text-[3.125rem]">Tell us about yourself.</h1>
+    <main className="w-full bg-whitesmoke pt-32 pl-6 pb-9 sm:pl-14 xl:pl-28">
+      <h1 className="text-[2rem] sm:text-[3.5rem] text-[#303030] font-bold">
+        Tell us about yourself.
+      </h1>
 
       <form onSubmit={onSubmit}>
-        <div className="w-[90vw] min-[440px]:w-[66vw] md:w-[42rem] mt-10 h-sm:mb-10 mb-6 flex flex-col text-gray-200">
+        <div className="w-[85vw] min-[440px]:w-[66vw] md:w-[42rem] mt-10 h-sm:mb-10 mb-6 flex flex-col text-gray-200">
           <div className="flex md:flex-row flex-col">
             <div className="w-full mb-5">
               <label
                 htmlFor="name"
-                className="rounded-4xl text-start bg-whitesmoke overflow-hidden flex items-center justify-start p-[0.25rem] text-[1rem] text-darkslategray"
+                className="rounded-4xl mb-2 text-start bg-whitesmoke overflow-hidden flex items-center justify-start p-[0.25rem] text-[1rem] text-darkslategray"
               >
                 <div className="ml-5">Enter your name</div>
               </label>
@@ -74,7 +76,7 @@ const UserDetails: NextPage = () => {
             <div className="w-full mb-5 md:ml-5">
               <label
                 htmlFor="phone"
-                className="rounded-4xl text-start bg-whitesmoke flex items-center justify-start p-[0.25rem] text-[1rem] text-darkslategray"
+                className="rounded-4xl mb-2 text-start bg-whitesmoke flex items-center justify-start p-[0.25rem] text-[1rem] text-darkslategray"
               >
                 <div className="ml-5">Enter your phone number</div>
               </label>
@@ -99,7 +101,7 @@ const UserDetails: NextPage = () => {
             <div className="w-full mb-5">
               <label
                 htmlFor="email"
-                className="rounded-4xl text-start bg-whitesmoke flex items-center justify-start p-[0.25rem] text-[1rem] text-darkslategray"
+                className="rounded-4xl mb-2 text-start bg-whitesmoke flex items-center justify-start p-[0.25rem] text-[1rem] text-darkslategray"
               >
                 <div className="ml-5">Enter your email</div>
               </label>
@@ -121,7 +123,7 @@ const UserDetails: NextPage = () => {
             <div className="w-full mb-5 md:ml-5">
               <label
                 htmlFor="linkedInProfile"
-                className="rounded-4xl text-start bg-whitesmoke flex items-center justify-start p-[0.25rem] text-[1rem] text-darkslategray"
+                className="rounded-4xl mb-2 text-start bg-whitesmoke flex items-center justify-start p-[0.25rem] text-[1rem] text-darkslategray"
               >
                 <div className="ml-5">Paste your LinkedIn profile</div>
                 <span className="opacity-50 ml-2">{"(optional)"}</span>
@@ -144,9 +146,9 @@ const UserDetails: NextPage = () => {
         </div>
         <button
           type="submit"
-          className="rounded-32xl bg-blueviolet-200 flex items-center justify-center h-md:py-[2.25rem] py-[1.25rem] h-md:px-[3rem] px-[2rem] text-white"
+          className="rounded-full bg-blueviolet-200 flex items-center justify-center h-md:py-[2.25rem] py-[1.25rem] h-md:px-[3rem] px-[2rem] text-white"
         >
-          <p className="relative tracking-[-0.02em]">Next</p>
+          Next
         </button>
       </form>
     </main>

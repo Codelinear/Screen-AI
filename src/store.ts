@@ -38,7 +38,7 @@ export const useStore = create<AppState>((set) => ({
   setResponseLoading: (loading) => set(() => ({ responseLoading: loading })),
   setQuestions: (questions) => set(() => ({ questions })),
   increaseScore: () =>
-    set((state) => ({ candidateScore: state.candidateScore + 4 })),
+    set((state) => ({ candidateScore: state.candidateScore + 5 })),
   decreaseScore: () =>
     set((state) => ({ candidateScore: state.candidateScore + 0 })),
   changeScreen: (screen) => set(() => ({ screen })),

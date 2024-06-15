@@ -35,10 +35,11 @@ const UploadResume: NextPage = () => {
     return () => {
       if (timer) {
         clearInterval(timer);
+        setProgress(5);
       }
     };
   }, [testLoading]);
-  
+
   const onResumeSubmit = async () => {
     try {
       setTestLoading(true);
@@ -62,22 +63,27 @@ const UploadResume: NextPage = () => {
       } else {
         changeScreen("resumeInvalidEmailCapture");
       }
-    } catch (error) {
-      console.error(error);
-      // apply toaster here for error message
-
-      setFile(null);
-      setfileStatus("empty");
+    } catch (error: any) {
+      if ("message" in error.response.data) {
+        alert(error.response.data.message);
+        setfileStatus("invalid");
+        setFile(null);
+      }
     } finally {
       setTestLoading(false);
       setProgress(100);
+      setFile(null);
+      setfileStatus("empty");
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
     }
   };
 
   return testLoading ? (
     <TestLoading progress={progress} />
   ) : (
-    <div className="w-full bg-whitesmoke flex flex-col items-start justify-start pt-32 pl-6 md:pb-0 pb-10 sm:pl-14 xl:pl-28 h-md:pb-[4rem] h-lg:pb-[12.75rem] lg:pl-[3.75rem] lg:pr-[3.75rem]">
+    <div className="w-full bg-whitesmoke flex flex-col items-start justify-start pt-32 pl-6 pb-10 sm:pl-14 xl:pl-28 h-md:pb-[4rem] h-lg:pb-[12.75rem] lg:pl-[3.75rem] lg:pr-[3.75rem]">
       <input
         ref={fileInputRef}
         type="file"
@@ -86,8 +92,6 @@ const UploadResume: NextPage = () => {
         onChange={(e) => {
           const files = e.target.files;
           if (!files) {
-            console.log("file not there");
-
             return;
           }
 
@@ -108,7 +112,7 @@ const UploadResume: NextPage = () => {
       />
 
       <div className="flex flex-col items-start justify-start h-md:gap-[2rem] h-lg:gap-[6.5rem] max-w-full h-md:text-[4rem] h-lg:text-[5.125rem] text-darkslategray">
-        <h1 className="text-[1.6rem] text-[2.294]">
+        <h1 className="text-4xl font-semibold py-5">
           Great! Send us your resume.
         </h1>
         <div className="w-[34.188rem] flex flex-col items-start justify-start max-w-full text-[1.5rem] text-blueviolet-200">
@@ -120,21 +124,23 @@ const UploadResume: NextPage = () => {
                     fileInputRef.current?.click();
                   }
                 }}
-                className={`w-[20rem] cursor-pointer rounded-3xl bg-white flex flex-row items-start justify-center py-[3.531rem] h-md:pt-[5.531rem] px-[1.25rem] h-md:pb-[5.593rem] box-border shrink-0 max-w-full ${
+                className={`w-[18rem] sm:w-[20rem] cursor-pointer rounded-3xl bg-white flex flex-row items-center ${
+                  fileStatus === "valid"
+                    ? "justify-start pl-9"
+                    : "justify-center"
+                } py-[3.531rem] ${
                   fileStatus === "invalid" && "border border-[#C71414]"
                 }`}
               >
-                <div className="flex flex-row items-center justify-start max-w-full">
+                <div className={`flex justify-center items-center `}>
                   <div
-                    className={`"flex items-center justify-center pt-[0.231rem] mr-5 ${
-                      fileStatus === "valid" ? "pb-0" : "pb-4"
-                    }`}
+                    className={`"flex items-center justify-center ml-8 mr-5`}
                   >
                     {fileStatus === "valid" ? <Tick /> : <UploadIcon />}
                   </div>
-                  <div className="text-[1.2rem]">
+                  <div className="text-[1.2rem] font-medium">
                     {fileStatus === "valid" ? (
-                      <p className="m-0">Uploaded!</p>
+                      <p>Uploaded!</p>
                     ) : (
                       <>
                         {" "}
@@ -147,7 +153,7 @@ const UploadResume: NextPage = () => {
 
               {fileStatus === "valid" && (
                 <div
-                  className={`w-full h-[11rem] h-md:h-60 flex items-center justify-center rounded-3xl bg-lavender cursor-pointer leading-[normal] tracking-[normal]`}
+                  className={`w-20 py-[3.531rem] flex items-center justify-center rounded-3xl bg-lavender cursor-pointer`}
                   onClick={() => {
                     setfileStatus("empty");
                     setFile(null);
@@ -168,7 +174,7 @@ const UploadResume: NextPage = () => {
               Maximum file size: 2 MB
             </div>
           </div>
-          <div className="flex flex-row items-start justify-start gap-[1.25rem] text-white">
+          <div className="flex flex-row items-start justify-start mt-4 gap-[1.25rem] text-white">
             <div
               onClick={() => {
                 setfileStatus("empty");
@@ -178,20 +184,18 @@ const UploadResume: NextPage = () => {
                 }
                 changeScreen("home");
               }}
-              className="h-[4.6rem] h-md:h-[6.125rem] w-[4.6rem] cursor-pointer h-md:w-[6.25rem] [backdrop-filter:blur(9.7px)] rounded-32xl bg-lavender overflow-hidden shrink-0 flex flex-row items-center justify-center py-[2.25rem] px-[1.875rem] box-border"
+              className="h-[4.6rem] h-md:h-[6.125rem] w-[4.6rem] cursor-pointer h-md:w-[6.25rem] rounded-full bg-lavender flex flex-row items-center justify-center py-[2.25rem] px-[1.875rem]"
             >
               <ArrowLeft />
             </div>
             <button
               disabled={fileStatus === "invalid" || fileStatus === "empty"}
               onClick={onResumeSubmit}
-              className={`[backdrop-filter:blur(9.7px)] rounded-32xl ${
+              className={`rounded-full ${
                 fileStatus === "valid" ? "opacity-100" : "opacity-50"
-              } bg-blueviolet-200 overflow-hidden flex flex-row items-start justify-start py-[1.25rem] h-md:py-[2.25rem] px-[2rem] h-md:px-[3rem]`}
+              } rounded-full bg-blueviolet-200 flex items-center justify-center h-md:py-[2.25rem] py-[1.25rem] h-md:px-[3rem] px-[2rem] text-white`}
             >
-              <p className="relative tracking-[-0.02em] mq450:text-[1.188rem]">
-                Finish
-              </p>
+              Finish
             </button>
           </div>
         </div>

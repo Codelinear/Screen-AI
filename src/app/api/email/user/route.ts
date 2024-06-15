@@ -9,7 +9,7 @@ export const POST = async (req: NextRequest) => {
   const resend = new Resend(process.env.RESEND_API_KEY);
 
   await resend.emails.send({
-    from: "onboarding@resend.dev",
+    from: 'Acme <onboarding@resend.dev>',
     to: userDetails.email,
     subject: `Regarding the HR test application for ${userDetails.name}`,
     html: `<h1>You are not eligible for the position now. Best of luck for the furture.</h1>`,

@@ -42,17 +42,17 @@ const ResumeValid: NextPage = () => {
   return testLoading ? (
     <QuestionLoading />
   ) : (
-    <div className="w-full relative bg-whitesmoke flex flex-col items-start justify-start pt-40 pl-28">
-      <div className="w-[70.813rem] flex flex-col items-start justify-start h-md:gap-[3.25rem] max-w-full text-[5.125rem] text-darkslategray">
-        <h1 className="m-0 self-stretch w-3/4 text-[2.563rem] mb-16">
+    <div className="w-full relative bg-whitesmoke flex flex-col items-start justify-start pt-40 pl-6 pb-9 sm:pl-14 xl:pl-28">
+      <div className="flex flex-col items-start justify-start text-darkslategray">
+        <h1 className="font-medium w-3/4 text-[2.563rem] mb-8 sm:mb-16">
           Looks like you show potential! Finish this small test to help us
           understand better.
         </h1>
         <button
           onClick={startTest}
-          className="cursor-pointer border-none outline-none py-[2rem] px-[2.5rem] bg-blueviolet-200 rounded-full overflow-hidden flex flex-row items-start justify-start transition hover:bg-blueviolet-100"
+          className="rounded-full bg-blueviolet-200 flex items-center justify-center h-md:py-[2.25rem] py-[1.25rem] h-md:px-[3rem] px-[2rem] text-white cursor-pointer border-none outline-none transition hover:bg-blueviolet-100"
         >
-          <div className="relative text-[1.5rem] text-white">Start Test</div>
+          Start Test
         </button>
       </div>
     </div>

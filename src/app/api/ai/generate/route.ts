@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { WebPDFLoader } from "@langchain/community/document_loaders/web/pdf";
 import { ChatOpenAI } from "@langchain/openai";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { questionSystemPrompt } from "@/lib/prompts";
-import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 
 export const maxDuration = 60;
 
@@ -30,7 +28,7 @@ export const POST = async (req: NextRequest) => {
     const chain = resumePromptTemplate.pipe(chatModel);
 
     const res = await chain.invoke({
-      input: "Generate 25 problems",
+      input: "Generate 20 problems",
       skills: `
       - Javascript
         \n\n
@@ -49,13 +47,13 @@ export const POST = async (req: NextRequest) => {
       - Express
         \n\n
       - MongoDB
-        \n\n
       `,
     });
 
+    console.log(res.content)
+
     return NextResponse.json({
       output: JSON.parse(res.content.toString()),
-      // output: res.content,
     });
   } catch (error: any) {
     console.log(error);

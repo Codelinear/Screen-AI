@@ -24,6 +24,13 @@ export const POST = async (req: NextRequest) => {
 
     const docs = await loader.load();
 
+    if (docs[0].metadata.pdf.totalPages > 2) {
+      return NextResponse.json(
+        { message: "Please upload a resume with less than 2 pages" },
+        { status: 400 }
+      );
+    }
+
     const openaiAPIKey = process.env.OPENAI_API_KEY;
 
     //   const chatModel = new ChatGoogleGenerativeAI({

@@ -1,16 +1,21 @@
-import React from "react";
-import { Skeleton } from "@/components/ui/skeleton";
+import React, { useEffect, useState } from "react";
 
 const QuestionLoading = () => {
+  const [seconds, setSeconds] = useState(30);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSeconds((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="flex flex-col space-y-3">
-      <Skeleton className="h-[50px] w-[80vw] absolute top-[150px] left-[10%] bg-[#818181] rounded-xl" />
-      <div className="space-y-5 absolute top-[245px] h-md:top-[360px] left-[10%] w-[65vw]">
-        <Skeleton className="h-10 bg-[#818181] w-full" />
-        <Skeleton className="h-10 bg-[#818181] w-full" />
-        <Skeleton className="h-10 bg-[#818181] w-full" />
-        <Skeleton className="h-10 bg-[#818181] w-full" />
-      </div>
+    <div className="absolute h-screen w-screen backdrop-blur-3xl bg-white top-0 left-0 z-50 flex items-center justify-center">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mx-10 animate-pulse text-[#303030]">
+        Preparing your test. Please wait {seconds >= 0 ? seconds : "0"}s
+      </h1>
     </div>
   );
 };
