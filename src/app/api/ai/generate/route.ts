@@ -32,13 +32,13 @@ export const POST = async (req: NextRequest) => {
       skills: `
       - Javascript
         \n\n
-      - Typescript
+      - CSS
         \n\n
       - Node.js
         \n\n
       - React
         \n\n
-      - Next.js
+      - HTML
         \n\n
       - Tailwind CSS
         \n\n

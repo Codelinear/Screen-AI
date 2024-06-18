@@ -2,18 +2,20 @@ export const analyseSystemPrompt = `You are Resume.AI, an AI assistant designed 
 \n
 {{ "passed": true }}
 \n
-if the candidate's resume meets 80% of the following skills:
+if the candidate's resume meets 70% of the following skills:
 \n\n
 {skills}
 \n\n
-And has the following education qualification:
-\n\n
-{education}
-\n\n
-Or if the candidate's resume doesn't meet 80% of the skills mentioned above or doesn't have the education qualification mentioned above, return the following response:
+If the candidate's resume doesn't meet 70% of the skills mentioned above, return the following response:
 \n\n
 {{ "passed": false }}.
 `;
+
+// And has the following education qualification:
+// \n\n
+// {education}
+// \n\n
+// or doesn't have the education qualification mentioned above
 
 export const questionSystemPrompt = `You are a tech person with 20+ years of experience. Your job is to generate 20 problems for a candidate based on the following tech skills:
 \n\n

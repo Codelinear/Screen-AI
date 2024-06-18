@@ -56,13 +56,13 @@ export const POST = async (req: NextRequest) => {
       skills: `
     - Javascript
       \n\n
-    - Typescript
+    - CSS
       \n\n
     - Node.js
       \n\n
     - React
       \n\n
-    - Next.js
+    - HTML
       \n\n
     - Tailwind CSS
       \n\n
@@ -72,8 +72,6 @@ export const POST = async (req: NextRequest) => {
       \n\n
     - MongoDB
     `,
-      // education: "Bachelor of Science in Computer Science",
-      education: "Class 12th",
     });
 
     return NextResponse.json({
