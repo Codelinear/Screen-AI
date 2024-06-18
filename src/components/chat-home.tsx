@@ -38,7 +38,7 @@ const ChatHome = ({
 
       setResponseLoading(true);
 
-      const res = await fetch("/api/ai/ask", {
+      const res = await fetch("/api/ai/onboarding/chat", {
         method: "POST",
         body: JSON.stringify({ message: prompt }),
       });
@@ -55,15 +55,15 @@ const ChatHome = ({
 
   return (
     <div className="h-full w-full flex flex-col justify-between">
-      <div>
-        <p className="w-[60%] text-[#30303080] text-xl lg:text-2xl">
+      <div className="pt-5">
+        <p className="w-[60%] text-[#30303080] text-base">
           Thanks a lot for spending your time with us.
         </p>
-        <p className="text-xl text-[#303030] lg:text-2xl w-[60%]">
+        <p className="text-base text-[#303030] w-[60%]">
           Give us up to 48 hours for an update regarding your onboarding.
         </p>
       </div>
-      <h1 className="text-3xl sm:text-4xl md:text-5sxl lg:text-6sxl w-3/4 max-[420px]:w-full max-[420px]:text-center md:w-1/2 flex flex-col justify-between font-bold text-[#303030]">
+      <h1 className="text-5sxl lg:text-6sxl w-3/4 md:w-1/2 h-md:w-[90%] flex flex-col justify-between font-bold text-[#303030]">
         Meanwhile, you can learn about our company.
       </h1>
       <div className="w-full mb-10 flex justify-between overflow-x-scroll scrollbar-hide">

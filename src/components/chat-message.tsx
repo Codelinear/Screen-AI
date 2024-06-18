@@ -20,7 +20,7 @@ const ChatMessages = ({
     <div className="h-[95%] w-full relative">
       <div
         ref={chatsContainerRef}
-        className="absolute top-0 left-0 h-full w-full overflow-scroll scrollbar-hide pb-20"
+        className="absolute h-md:pt-5 top-0 left-0 h-full w-full overflow-scroll scrollbar-hide pb-20"
       >
         {messages.map((message) =>
           message?.type === "user" ? (

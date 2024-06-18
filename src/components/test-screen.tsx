@@ -6,7 +6,7 @@ import { checkAnswer, isCandidateSelected } from "@/lib/functions";
 import Markdown from "react-markdown";
 import { useTimer } from "react-timer-hook";
 import { v4 as uuidv4 } from "uuid";
-import remarkGfm from 'remark-gfm'
+import remarkGfm from "remark-gfm";
 import axios from "axios";
 
 const TestScreen = () => {
@@ -105,7 +105,7 @@ const TestScreen = () => {
   ]);
 
   return (
-    <div className="w-full relative bg-whitesmoke flex flex-col items-start justify-start pt-32 pl-6 pb-9 sm:pl-14 xl:pl-28 text-[2.294rem]">
+    <div className="w-full relative bg-whitesmoke h-md:absolute h-md:top-[11%] flex flex-col items-start justify-start pt-32 pl-6 pb-9 sm:pl-14 xl:pl-28 text-[2.294rem]">
       {submitLoading && (
         <div className="absolute h-screen w-screen backdrop-blur-3xl bg-white top-0 left-0 z-50 flex items-center justify-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mx-10 animate-pulse text-[#303030]">
@@ -128,11 +128,11 @@ const TestScreen = () => {
             questions[questionNumber]?.options.map((option) => (
               <div
                 key={uuidv4()}
-                className="flex flex-row items-start justify-start gap-[0.75rem] max-w-full"
+                className="flex items-center justify-start gap-[0.75rem] max-w-full"
               >
                 <input
                   id={option}
-                  className="cursor-pointer m-0 h-md:h-[1.75rem] h-md:w-[1.75rem] h-[1rem] w-[1rem] min-h-[1.75rem]"
+                  className="cursor-pointer h-md:h-[1.75rem] h-md:w-[1.75rem] h-[1rem] w-[1rem]"
                   type="radio"
                   name="options"
                   value={option}
@@ -142,9 +142,9 @@ const TestScreen = () => {
                 <label
                   htmlFor={option}
                   style={{ userSelect: "none" }}
-                  className="flex flex-col items-start justify-start pt-[0.125rem] cursor-pointer"
+                  className="cursor-pointer mb-1.5 h-md:mb-2"
                 >
-                  <p>{option}</p>
+                  {option}
                 </label>
               </div>
             ))}

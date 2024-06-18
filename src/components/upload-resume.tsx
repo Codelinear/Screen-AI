@@ -112,10 +112,10 @@ const UploadResume: NextPage = () => {
       />
 
       <div className="flex flex-col items-start justify-start h-md:gap-[2rem] h-lg:gap-[6.5rem] max-w-full h-md:text-[4rem] h-lg:text-[5.125rem] text-darkslategray">
-        <h1 className="text-4xl font-semibold py-5">
+        <h1 className="text-4xl font-semibold h-md:absolute top-[23%] py-5">
           Great! Send us your resume.
         </h1>
-        <div className="w-[34.188rem] flex flex-col items-start justify-start max-w-full text-[1.5rem] text-blueviolet-200">
+        <div className="w-[34.188rem] h-md:absolute top-[40%] flex flex-col items-start justify-start max-w-full text-[1.5rem] text-blueviolet-200">
           <div className="self-stretch flex flex-col items-start justify-start gap-[1.35rem] max-w-full my-7">
             <div className="self-stretch overflow-hidden flex flex-row items-start justify-start gap-[1.25rem] max-w-full">
               <div

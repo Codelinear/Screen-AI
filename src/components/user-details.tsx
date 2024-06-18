@@ -44,12 +44,12 @@ const UserDetails: NextPage = () => {
 
   return (
     <main className="w-full bg-whitesmoke pt-32 pl-6 pb-9 sm:pl-14 xl:pl-28">
-      <h1 className="text-[2rem] sm:text-[3.5rem] text-[#303030] font-bold">
+      <h1 className="text-[2rem] h-md:absolute top-[23%] sm:text-[3.5rem] text-[#303030] font-bold">
         Tell us about yourself.
       </h1>
 
-      <form onSubmit={onSubmit}>
-        <div className="w-[85vw] min-[440px]:w-[66vw] md:w-[42rem] mt-10 h-sm:mb-10 mb-6 flex flex-col text-gray-200">
+      <form className="h-md:absolute top-[35%]" onSubmit={onSubmit}>
+        <div className="w-[85vw] sm:w-[66w] md:w-[42rem] mt-10 h-sm:mb-10 mb-6 flex flex-col text-gray-200">
           <div className="flex md:flex-row flex-col">
             <div className="w-full mb-5">
               <label

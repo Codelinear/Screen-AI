@@ -14,7 +14,7 @@ const ResumeInvalidEmailCapture: NextPage = () => {
 
   return (
     <div className="w-full min-h-screen bg-lavender flex flex-col items-start justify-start pt-28 px-6 pb-10 sm:px-14 xl:px-28 text-[2.294rem] text-gray-100">
-      <div className="w-[50rem] flex flex-col items-start justify-start max-w-full text-[2rem] lg:text-5xl text-blueviolet-300 gap-[3.75rem]">
+      <div className="w-[50rem] h-md:absolute h-md:top-[20%] flex flex-col items-start justify-start max-w-full text-[2rem] lg:text-5xl text-blueviolet-300 gap-[3.75rem]">
         <p className="m-0 self-stretch mt-8">
           <span>
             Sorry. You unfortunately don’t meet the requirements for this role.
