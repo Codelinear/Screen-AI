@@ -7,15 +7,18 @@ const Logo = () => {
   const router = useRouter();
 
   return (
-    <header className="absolute z-[60] top-[2rem] h-md:top-[4.25rem] left-6 sm:left-[3.5rem] xl:left-[7.5rem] flex flex-col items-end justify-start gap-[0.375rem] text-[2rem] h-md:text-[2.294rem] text-gray-100">
-      <h3>Screen.AI</h3>
-      <Link
-        className="flex flex-row items-center justify-start gap-[0.125rem] cursor-pointer text-[0.875rem]"
-        href="https://codelinear.com"
+    <header
+      id="logo"
+      className="absolute z-[60] text-[#202020] top-[2rem] h-md:top-[4.25rem] left-6 sm:left-[3.5rem] xl:left-[7.5rem]"
+    >
+      <h2 className="text-2xl pointer-events-none">Support.AI</h2>
+      <div
+        className="flex hover:underline transition text-[10px] items-center cursor-pointer justify-end ml-auto"
+        onClick={() => router.push("https://codelinear.com/")}
       >
-        <p className="relative">by Codelinear</p>
+        <h4 className="mr-1 pt-0.5">by Codelinear</h4>
         <Redirect />
-      </Link>
+      </div>
     </header>
   );
 };

@@ -42,7 +42,7 @@ const ResumeValid: NextPage = () => {
   return testLoading ? (
     <QuestionLoading />
   ) : (
-    <div className="w-full h-md:absolute h-md:top-[10%] relative bg-whitesmoke flex flex-col items-start justify-start pt-40 pl-6 pb-9 sm:pl-14 xl:pl-28">
+    <div className="w-full h-md:absolute h-md:top-[4rem] relative bg-whitesmoke flex flex-col items-start justify-start pt-40 pl-6 pb-9 sm:pl-14 xl:pl-28">
       <div className="flex flex-col items-start justify-start text-darkslategray">
         <h1 className="font-medium w-3/4 text-[2.563rem] mb-8 sm:mb-16">
           Looks like you show potential! Finish this small test to help us

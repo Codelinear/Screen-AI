@@ -8,6 +8,7 @@ import { useTimer } from "react-timer-hook";
 import { v4 as uuidv4 } from "uuid";
 import remarkGfm from "remark-gfm";
 import axios from "axios";
+// import {allQuestions as questions} from "@/constants/array";
 
 const TestScreen = () => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -114,7 +115,7 @@ const TestScreen = () => {
         </div>
       )}
 
-      <div className="w-[70.813rem] flex flex-col items-start justify-start gap-[2rem] mb-12 max-w-full text-darkslategray">
+      <div className="w-[70.813rem] flex flex-col items-start justify-start h-md:gap-[4rem] gap-[2rem] h-md:mb-16 mb-12 max-w-full text-darkslategray">
         <h1
           style={{ userSelect: "none" }}
           className="mr-4 text-2xl sm:text-[2rem] cursor-not-allowed pointer-events-none"
@@ -142,7 +143,7 @@ const TestScreen = () => {
                 <label
                   htmlFor={option}
                   style={{ userSelect: "none" }}
-                  className="cursor-pointer mb-1.5 h-md:mb-2"
+                  className="cursor-pointer"
                 >
                   {option}
                 </label>
