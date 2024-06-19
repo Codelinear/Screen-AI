@@ -42,7 +42,7 @@ export const sendMessage = async (message: string) => {
 export const getRandomSuggestions = (): string[] => {
   let suggestions: string[] = [];
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 8; i++) {
     const randomIndex = Math.floor(Math.random() * questions.length);
 
     const randomQuestion = questions[randomIndex];

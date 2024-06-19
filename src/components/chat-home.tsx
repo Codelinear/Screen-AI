@@ -18,7 +18,7 @@ const ChatHome = ({
 
   useEffect(() => {
     if (chatStatus !== "chatting") {
-      setPromptSuggestions(getRandomSuggestions());
+      setPromptSuggestions(getRandomSuggestions().slice(0, 2));
     }
   }, [chatStatus]);
 
@@ -54,23 +54,23 @@ const ChatHome = ({
   );
 
   return (
-    <div className="h-full w-full flex flex-col justify-between">
-      <div className="pt-5">
-        <p className="w-[60%] text-[#30303080] text-base">
+    <div className="h-full w-full flex flex-col justify-end">
+      <div className="min-[800px]:pt-5">
+        <p className="w-[60%] text-[#30303080] text-[0.8rem] min-[500px]:text-base">
           Thanks a lot for spending your time with us.
         </p>
-        <p className="text-base text-[#303030] w-[60%]">
+        <p className="text-[0.8rem] min-[500px]:text-base text-[#303030] w-[60%]">
           Give us up to 48 hours for an update regarding your onboarding.
         </p>
       </div>
-      <h1 className="text-5sxl lg:text-6sxl w-3/4 md:w-1/2 h-md:w-[90%] flex flex-col justify-between font-bold text-[#303030]">
+      <h1 className="text-[1.3rem] my-[1.5rem] sm:my-[3rem] min-[500px]:text-5sxl lg:text-6sxl w-3/4 md:w-1/2 h-md:w-[90%] flex flex-col justify-between font-bold text-[#303030]">
         Meanwhile, you can learn about our company.
       </h1>
-      <div className="w-full mb-10 flex justify-between overflow-x-scroll scrollbar-hide">
-        {promptSuggestions.map((prompt) => (
+      <div className="w-full mb-10 flex justify-between">
+        {promptSuggestions.map((prompt, index) => (
           <div
             key={uuidv4()}
-            className={`p-4 min-w-96 max-w-[28rem] h-32 cursor-pointer rounded-xl bg-white mx-3`}
+            className={`p-4 w-full ${index === 0 ? "" : "hidden sm:block ml-6"} h-32 cursor-pointer rounded-xl bg-white `}
             onClick={() => onPromptClick(prompt)}
           >
             <div className="bg-[#EBDFFF] mb-2 rounded-full h-9 w-9 flex items-center justify-center">

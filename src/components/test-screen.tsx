@@ -8,7 +8,7 @@ import { useTimer } from "react-timer-hook";
 import { v4 as uuidv4 } from "uuid";
 import remarkGfm from "remark-gfm";
 import axios from "axios";
-// import {allQuestions as questions} from "@/constants/array";
+import {allQuestions as questions} from "@/constants/array";
 
 const TestScreen = () => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -30,7 +30,7 @@ const TestScreen = () => {
     candidateScore,
     changeScreen,
     userDetails,
-    questions,
+    // questions,
   } = useStore();
 
   useEffect(() => {
@@ -106,7 +106,7 @@ const TestScreen = () => {
   ]);
 
   return (
-    <div className="w-full relative bg-whitesmoke h-md:absolute h-md:top-[11%] flex flex-col items-start justify-start pt-32 pl-6 pb-9 sm:pl-14 xl:pl-28 text-[2.294rem]">
+    <div className="w-full relative bg-whitesmoke h-md:absolute h-md:top-[11%] flex flex-col items-start justify-start pt-24 h-sm:pt-32 pl-6 pb-9 sm:pl-14 xl:pl-28 text-[2.294rem]">
       {submitLoading && (
         <div className="absolute h-screen w-screen backdrop-blur-3xl bg-white top-0 left-0 z-50 flex items-center justify-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mx-10 animate-pulse text-[#303030]">
@@ -151,14 +151,14 @@ const TestScreen = () => {
             ))}
         </div>
       </div>
-      <div className="w-[83vw] flex flex-wrap items-end mr-12 justify-between max-w-full gap-[1.25rem] text-[1.5rem] text-white">
+      <div className="w-[83vw] flex flex-wrap items-end mr-12 justify-between max-w-full gap-[1.25rem] text-[1rem] sm:text-[1.5rem] text-white">
         <div className="flex items-center justify-start gap-[3rem] max-w-full">
           <button
             onClick={submitQuestion}
             disabled={!selectedOption}
             className={`${
               !selectedOption ? "opacity-50" : "opacity-100"
-            } rounded-full bg-blueviolet-200 text-base flex flex-row items-start cursor-pointer justify-start py-6 px-8`}
+            } rounded-full bg-blueviolet-200 text-[0.9rem] h-sm:text-base cursor-pointer p-4 h-sm:py-6 h-sm:px-8`}
           >
             Next
           </button>
@@ -168,14 +168,14 @@ const TestScreen = () => {
             </div>
           </div>
         </div>
-        <div className="w-[21.125rem] flex flex-col items-end justify-start gap-[0.925rem] max-w-full text-right text-base text-black">
+        <div className="w-[40vw] tab:w-[21.125rem] max-tab:absolute max-tab:top-[1rem] max-tab:left-[50%] flex flex-col items-end justify-start gap-[0.7rem] sm:gap-[0.925rem] max-w-full text-right text-xs sm:text-base text-black">
           <div className="relative">
             {questionNumber + 1} / {questions?.length} Questions finished.
           </div>
           <div className="self-stretch rounded-6xl bg-white overflow-hidden flex flex-row items-start justify-start transition duration-300">
             <div
               style={{ width: `${(questionNumber * 100) / 25}%` }}
-              className="h-[1.625rem] transition duration-300 relative rounded-6xl [background:linear-gradient(90deg,_#ebdfff,_#afbbf5)] overflow-hidden shrink-0"
+              className="h-4 tab:h-[1.625rem] transition duration-300 relative rounded-6xl [background:linear-gradient(90deg,_#ebdfff,_#afbbf5)] overflow-hidden shrink-0"
             />
           </div>
         </div>

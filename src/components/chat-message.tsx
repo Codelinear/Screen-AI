@@ -24,7 +24,7 @@ const ChatMessages = ({
       >
         {messages.map((message) =>
           message?.type === "user" ? (
-            <p key={message.id} className="text-lg font-semibold my-7">
+            <p key={message.id} className="text-lg my-7">
               {message.content}
             </p>
           ) : (
