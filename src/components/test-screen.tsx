@@ -8,7 +8,7 @@ import { useTimer } from "react-timer-hook";
 import { v4 as uuidv4 } from "uuid";
 import remarkGfm from "remark-gfm";
 import axios from "axios";
-import {allQuestions as questions} from "@/constants/array";
+// import {allQuestions as questions} from "@/constants/array";
 
 const TestScreen = () => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -30,7 +30,7 @@ const TestScreen = () => {
     candidateScore,
     changeScreen,
     userDetails,
-    // questions,
+    questions,
   } = useStore();
 
   useEffect(() => {
