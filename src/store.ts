@@ -30,7 +30,7 @@ interface AppState {
 
 export const useStore = create<AppState>((set) => ({
   questions: null,
-  screen: "home",
+  screen: "chatScreen",
   candidateScore: 0,
   responseLoading: false,
   chatStatus: "startChat",

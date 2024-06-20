@@ -56,14 +56,14 @@ const ChatHome = ({
   return (
     <div className="h-full w-full flex flex-col justify-end">
       <div className="min-[800px]:pt-5">
-        <p className="w-[60%] text-[#30303080] text-[0.8rem] xl:text-[1.5rem] xl:leading-[2rem] min-[500px]:text-base">
+        <p className="w-[60%] text-[#30303080] text-[0.8rem] xl:text-[1.5rem] h-sm1:leading-[1.2rem] xl:leading-[2rem] h-sm1:text-[1.2rem]">
           Thanks a lot for spending your time with us.
         </p>
-        <p className="text-[0.8rem] lg:text-[1.2rem] xl:text-[1.5rem] xl:leading-[2rem] min-[500px]:text-base text-[#303030] w-[60%]">
+        <p className="text-[0.8rem] lg:text-[1.2rem] xl:text-[1.5rem] h-sm1:leading-[1.2rem] xl:leading-[2rem] h-sm1:text-[1.2rem] text-[#303030] w-[60%]">
           Give us up to 48 hours for an update regarding your onboarding.
         </p>
       </div>
-      <h1 className="text-[1.5rem] my-[1.5rem] h-md:my-[4rem] h-sm:my-[2rem] sm:text-[2rem] h-md:text-[3.5rem] lg:text-[2.5rem] xl:text-[3.5rem] w-3/4 tracking-tight md:w-3/4 h-md:w-[90%] flex flex-col justify-between text-[#303030]">
+      <h1 className="text-[1.5rem] my-[1.5rem] h-md:my-[4rem] h-sm1:my-[2rem] sm:text-[2rem] h-md:text-[3.5rem] lg:text-[2.5rem] xl:text-[3.5rem] h-sm1:text-[2.5rem] w-3/4 tracking-tight md:w-3/4 h-md:w-[90%] flex flex-col justify-between text-[#303030]">
         Meanwhile, you can learn about our company.
       </h1>
       <div className="w-full mb-10 flex justify-between">

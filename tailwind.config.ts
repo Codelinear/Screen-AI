@@ -89,6 +89,7 @@ const config = {
       screens: {
         // for height
         "h-sm": { raw: "(min-height: 600px)" },
+        "h-sm1": { raw: "(min-height: 500px)" },
         "h-md": { raw: "(min-height: 800px)" },
         "h-lg": { raw: "(min-height: 1000px)" },
         "tab": "820px"
