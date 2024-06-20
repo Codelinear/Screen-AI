@@ -198,7 +198,7 @@ const TestScreen = () => {
             </div>
           </div>
         </div>
-        <div className="w-[40vw] lg:w-[21.125rem] absolute lg:static text-[2rem] h-md:top-[4rem] left-[57%] flex flex-col items-end justify-start gap-[0.7rem] sm:gap-[0.925rem] max-w-full text-right text-xs sm:text-base text-black">
+        <div className="w-[40vw] lg:w-[21.125rem] absolute lg:static top-[2rem] h-md:top-[4rem] left-[57%] flex flex-col items-end justify-start gap-[0.7rem] sm:gap-[0.925rem] max-w-full text-right text-xs sm:text-base text-black">
           <div>
             {questionNumber + 1} / {questions?.length} Questions finished.
           </div>

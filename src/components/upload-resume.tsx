@@ -32,8 +32,8 @@ const UploadResume: NextPage = () => {
     if (testLoading) {
       setProgress(5);
       timer = setInterval(() => {
-        setProgress((prev) => (prev < 100 ? prev + 0.3 : 100));
-      }, 10); // Adjust the interval time to control the speed of the slider
+        setProgress((prev) => (prev < 100 ? prev + 1 : 100));
+      }, 100); // Adjust the interval time to control the speed of the slider
     } else {
       clearInterval(timer);
     }
