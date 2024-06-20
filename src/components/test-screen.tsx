@@ -172,10 +172,10 @@ const TestScreen = () => {
           <div className="relative">
             {questionNumber + 1} / {questions?.length} Questions finished.
           </div>
-          <div className="self-stretch rounded-6xl bg-white overflow-hidden flex flex-row items-start justify-start transition duration-300">
+          <div className="self-stretch rounded-6xl bg-white overflow-hidden flex flex-row items-start justify-start duration-300">
             <div
               style={{ width: `${(questionNumber * 100) / 25}%` }}
-              className="h-4 tab:h-[1.625rem] transition duration-300 relative rounded-6xl [background:linear-gradient(90deg,_#ebdfff,_#afbbf5)] overflow-hidden shrink-0"
+              className="h-4 tab:h-[1.625rem] transition-all duration-200 relative rounded-6xl [background:linear-gradient(90deg,_#ebdfff,_#afbbf5)] overflow-hidden shrink-0"
             />
           </div>
         </div>

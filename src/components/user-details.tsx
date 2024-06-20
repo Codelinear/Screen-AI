@@ -44,7 +44,7 @@ const UserDetails: NextPage = () => {
 
   return (
     <main className="w-full bg-whitesmoke pt-32 pl-6 pb-9 sm:pl-14 xl:pl-28">
-      <h1 className="text-[2rem] h-md:my-[5rem] sm:text-[3.5rem] text-[#303030] font-bold">
+      <h1 className="text-[2rem] h-md:my-[5rem] sm:text-[3.5rem] text-[#303030]">
         Tell us about yourself.
       </h1>
 

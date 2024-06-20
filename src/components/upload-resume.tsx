@@ -14,9 +14,14 @@ const UploadResume: NextPage = () => {
   const [file, setFile] = useState<File | null>(null);
   const [testLoading, setTestLoading] = useState<boolean>(false);
   const [progress, setProgress] = useState<number>(5);
-  const [fileStatus, setfileStatus] = useState<"empty" | "valid" | "invalid">(
-    "empty"
-  );
+  const [fileStatus, setfileStatus] = useState<
+    | "empty"
+    | "valid"
+    | "notResume"
+    | "exceededSize"
+    | "invalid"
+    | "pageExceeded"
+  >("empty");
 
   const { changeScreen } = useStore();
 
@@ -56,6 +61,14 @@ const UploadResume: NextPage = () => {
 
       const res = await axios.post("/api/ai/analyse", formData);
 
+      if (
+        "message" in res.data.output &&
+        res.data.output.message === "Invalid resume"
+      ) {
+        setfileStatus("notResume");
+        return;
+      }
+
       const isEligible = res.data.output.passed;
 
       if (isEligible) {
@@ -64,16 +77,20 @@ const UploadResume: NextPage = () => {
         changeScreen("resumeInvalidEmailCapture");
       }
     } catch (error: any) {
-      if ("message" in error.response.data) {
+      if (
+        "message" in error.response.data &&
+        error.response.data.message === "pageExceeded"
+      ) {
+        setfileStatus("pageExceeded");
+      } else {
         alert(error.response.data.message);
         setfileStatus("invalid");
-        setFile(null);
       }
     } finally {
       setTestLoading(false);
       setProgress(100);
       setFile(null);
-      setfileStatus("empty");
+
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
@@ -83,7 +100,7 @@ const UploadResume: NextPage = () => {
   return testLoading ? (
     <TestLoading progress={progress} />
   ) : (
-    <div className="w-full bg-whitesmoke flex flex-col items-start justify-start pt-32 pl-6 pb-10 sm:pl-14 xl:pl-28 h-md:pb-[4rem] h-lg:pb-[12.75rem] lg:pl-[3.75rem] lg:pr-[3.75rem]">
+    <div className="w-full bg-whitesmoke flex flex-col items-start justify-start pt-24 h-sm:pt-32 pl-6 pb-10 sm:pl-14 xl:pl-28 h-md:pb-[4rem] h-lg:pb-[12.75rem] lg:pl-[3.75rem] lg:pr-[3.75rem]">
       <input
         ref={fileInputRef}
         type="file"
@@ -100,7 +117,7 @@ const UploadResume: NextPage = () => {
           const fileSizeInMB = fileSizeInKB / 1024;
 
           if (fileSizeInMB > 2) {
-            setfileStatus("invalid");
+            setfileStatus("exceededSize");
             setFile(null);
             e.target.value = "";
             return;
@@ -111,11 +128,11 @@ const UploadResume: NextPage = () => {
         }}
       />
 
-      <div className="flex flex-col items-start justify-start h-md:gap-[2rem] h-lg:gap-[6.5rem] max-w-full h-md:text-[4rem] h-lg:text-[5.125rem] text-darkslategray">
-        <h1 className="text-4xl font-semibold h-md:absolute h-md:top-[12rem] py-5">
+      <div className="flex flex-col items-start justify-start h-md:gap-[2rem] h-lg:gap-[6.5rem] max-w-full text-darkslategray">
+        <h1 className="text-4xl tracking-tighter h-md:absolute h-md:top-[12rem] py-5">
           Great! Send us your resume.
         </h1>
-        <div className="w-[34.188rem] h-md:absolute h-md:top-[18rem] flex flex-col items-start justify-start max-w-full text-[1.5rem] text-blueviolet-200">
+        <div className="w-[34.188rem] h-md:absolute h-md:top-[18rem] flex flex-col items-start justify-start max-w-full text-blueviolet-200">
           <div className="self-stretch flex flex-col items-start justify-start gap-[1.35rem] max-w-full my-7">
             <div className="self-stretch overflow-hidden flex flex-row items-start justify-start gap-[1.25rem] max-w-full">
               <div
@@ -130,6 +147,10 @@ const UploadResume: NextPage = () => {
                     : "justify-center"
                 } py-[3.531rem] ${
                   fileStatus === "invalid" && "border border-[#C71414]"
+                }
+                  ${fileStatus === "exceededSize" && "border border-[#C71414]"}
+                  ${fileStatus === "pageExceeded" && "border border-[#C71414]"}
+                  ${fileStatus === "notResume" && "border border-[#C71414]"}
                 }`}
               >
                 <div className={`flex justify-center items-center `}>
@@ -171,7 +192,16 @@ const UploadResume: NextPage = () => {
                 fileStatus === "empty" ? "text-darkslategray" : "text-[#C71414]"
               } ${fileStatus === "valid" && "hidden"}`}
             >
-              Maximum file size: 2 MB
+              {fileStatus === "exceededSize" && <>Maximum file size: 2 MB</>}
+              {fileStatus === "notResume" && (
+                <>
+                  We couldn’t identify your resume. Please try uploading it
+                  again.
+                </>
+              )}
+              {fileStatus === "pageExceeded" && (
+                <>Please upload a resume with less than 2 pages.</>
+              )}
             </div>
           </div>
           <div className="flex flex-row items-start justify-start mt-4 gap-[1.25rem] text-white">
@@ -184,16 +214,17 @@ const UploadResume: NextPage = () => {
                 }
                 changeScreen("home");
               }}
-              className="h-[4.6rem] h-md:h-[6.125rem] w-[4.6rem] cursor-pointer h-md:w-[6.25rem] rounded-full bg-lavender flex flex-row items-center justify-center py-[2.25rem] px-[1.875rem]"
+              className="h-[3.68rem] w-[3.68rem] cursor-pointer rounded-full bg-lavender flex flex-row items-center justify-center p-4"
             >
               <ArrowLeft />
             </div>
             <button
               disabled={fileStatus === "invalid" || fileStatus === "empty"}
               onClick={onResumeSubmit}
-              className={`rounded-full ${
+              type="button"
+              className={`${
                 fileStatus === "valid" ? "opacity-100" : "opacity-50"
-              } rounded-full bg-blueviolet-200 flex items-center justify-center h-md:py-[2.25rem] py-[1.25rem] h-md:px-[3rem] px-[2rem] text-white`}
+              } rounded-full bg-blueviolet-200 flex items-center justify-center py-[1.25rem] px-[2rem] text-white`}
             >
               Finish
             </button>
